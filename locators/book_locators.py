@@ -1,7 +1,7 @@
 class BookLocators:
-    IMAGE = "div.image_container img[src]"
-    LINK = "div.image_container a[href]"
-    RATING = "p.star-rating"
-    NAME = "a[title]"
-    PRICE = "p.price_color"
-    AVAILABILITY = "p.instock"
+    IMAGE_LOCATOR = "div.image_container img[src]"
+    LINK_LOCATOR = "div.image_container a[href]"
+    RATING_LOCATOR = "p.star-rating"
+    NAME_LOCATOR = "a[title]"
+    PRICE_LOCATOR = "p.price_color"
+    AVAILABILITY_LOCATOR = "p.instock"

@@ -5,6 +5,14 @@ from milestone_3_Book_scraper.locators.book_locators import BookLocators
 
 class BookParser:
 
+    RATINGS = {
+        "One": 1,
+        "Two": 2,
+        "Three": 3,
+        "Four": 4,
+        "Five": 5
+    }
+
     def __init__(self, parent):
         self.parent = parent
 
@@ -19,35 +27,34 @@ class BookParser:
 
     @property
     def image(self):
-        locator = BookLocators.IMAGE
+        locator = BookLocators.IMAGE_LOCATOR
         return self.parent.select_one(locator).attrs["src"]
 
     @property
     def name(self):
-        locator = BookLocators.NAME
+        locator = BookLocators.NAME_LOCATOR
         return self.parent.select_one(locator).attrs["title"]
 
     @property
     def link(self):
-        locator = BookLocators.LINK
+        locator = BookLocators.LINK_LOCATOR
         return self.parent.select_one(locator).attrs["href"]
 
     @property
     def rating(self):
-        locator = BookLocators.RATING
+        locator = BookLocators.RATING_LOCATOR
         classes = self.parent.select_one(locator).attrs["class"]
-        rating = [r for r in classes if r != "star-rating"]
-        if len(rating) > 0:
-            return rating[0]
-        return "No rating"
+        rating_class = [r for r in classes if r != "star-rating"]
+        rating_number = BookParser.RATINGS.get(rating_class[0])
+        return rating_number
 
     @property
     def price(self):
-        locator = BookLocators.PRICE
+        locator = BookLocators.PRICE_LOCATOR
         price_text = self.parent.select_one(locator).text
         return float(re.search(r"[\d]+\.[\d]+", price_text).group())
 
     @property
     def availability(self):
-        locator = BookLocators.AVAILABILITY
+        locator = BookLocators.AVAILABILITY_LOCATOR
         return self.parent.select_one(locator).text.strip()
