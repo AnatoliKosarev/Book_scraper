@@ -1,4 +1,8 @@
+import logging
+
 from milestone_3_Book_scraper.app import books
+
+logger = logging.getLogger("scraping.menu")
 
 MENU_MESSAGE = """\nPlease select your option:
 - 'b': to display 10 best rated books
@@ -12,6 +16,7 @@ book_generator = (book for book in books)  # generates next(iterable) value from
 
 
 def print_ten_best_rating_books():
+    logger.info("Finding best rated books...")
     # ten_best_rating_book_list = sorted(books, key=lambda b: b.rating, reverse=True)[:10]
     """ reverse=True - because default order is ASC (0-100), to display max rating first we have to reverse order
     we use slicing [:10] to display first 10 sorted elements
@@ -30,6 +35,7 @@ def print_ten_best_rating_books():
 
 
 def print_five_cheapest_books():
+    logger.info("Finding cheapest books...")
     five_cheapest_book_list = sorted(books, key=lambda b: b.price)[:5]
     print("\n--5 cheapest books--")
     for book in five_cheapest_book_list:
@@ -37,6 +43,7 @@ def print_five_cheapest_books():
 
 
 def print_next_book():
+    logger.info("Getting next book from generator of all books...")
     print(next(book_generator))
 
 
@@ -57,6 +64,7 @@ def start_menu():
             print("Invalid selection. Please try again.")
 
         user_selection = input(MENU_MESSAGE)
+        logger.debug("Terminating program...")
 
 
 start_menu()
