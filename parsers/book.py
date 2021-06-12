@@ -17,9 +17,10 @@ class BookParser:
         self.parent = parent
 
     def __repr__(self):
+        star = "stars" if self.rating > 1 else "star"
         return f"""
         <Book: {self.name}, 
-        rating: {self.rating}, 
+        rating: {self.rating} {star}, 
         price: {self.price}, 
         availability: {self.availability}
         image: {self.image},
