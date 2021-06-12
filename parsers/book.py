@@ -61,6 +61,7 @@ class BookParser:
         locator = BookLocators.RATING_LOCATOR
         classes = self.parent.select_one(locator).attrs["class"]
         rating_class = [r for r in classes if r != "star-rating"]
+#       rating_class = filter(lambda x: x != 'star-rating', classes)
         rating_number = BookParser.RATINGS.get(rating_class[0])
         logger.debug(f"Found book rating: '{rating_number}'.")
         return rating_number

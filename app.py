@@ -25,6 +25,7 @@ page_content = b""
 # global page
 for page_number in range(2, page.last_page + 1):  # start with 2, because page 1 was scraped higher in the code
     url = f"https://books.toscrape.com/catalogue/page-{page_number}.html"
+    logger.info(f"Requesting '{url}'.")
     page_content += requests.get(url).content
 logger.debug("Creating BookPage from page_content.")
 page = BookPage(page_content)

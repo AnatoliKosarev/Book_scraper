@@ -27,5 +27,5 @@ class BookPage:
         page_number_text = self.soup.select_one(locator).text
         logger.info(f"Found number of catalogue pages available: '{page_number_text}'.")
         last_page = int(re.search(r"[A-Za-z]+\s[\d]+[a-z\s]+([\d]+)", page_number_text).group(1))
-        logger.debug(f"Extracted number of pages as integer: {last_page}'.")
+        logger.info(f"Extracted number of pages as integer: {last_page}'.")
         return last_page
